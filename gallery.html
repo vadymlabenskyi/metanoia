@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Metanoia</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            background:#0b0b0b;
+            color:white;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        nav{
+            position:sticky;
+            top:0;
+            background:rgba(10,10,10,.95);
+            padding:25px 8%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            backdrop-filter:blur(15px);
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-left:25px;
+            font-weight:600;
+        }
+
+        h1{
+            text-align:center;
+            margin:60px 0 10px;
+            font-size:48px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#999;
+            margin-bottom:60px;
+        }
+
+        .gallery{
+            width:90%;
+            margin:auto;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:20px;
+            padding-bottom:80px;
+        }
+
+        .gallery img{
+            width:100%;
+            border-radius:18px;
+            display:block;
+            transition:.35s;
+            cursor:pointer;
+        }
+
+        .gallery img:hover{
+            transform:scale(1.03);
+        }
+
+        footer{
+            text-align:center;
+            padding:50px;
+            color:#888;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div><strong>METANOIA</strong></div>
+
+<div>
+<a href="index.html">Home</a>
+<a href="gallery.html">Gallery</a>
+</div>
+
+</nav>
+
+<h1>Gallery</h1>
+
+<p class="subtitle">
+Capturing emotion through light.
+</p>
+
+<div class="gallery">
+
+<img src="gallery/image1.jpg" alt="">
+<img src="gallery/image2.jpg" alt="">
+<img src="gallery/image3.jpg" alt="">
+<img src="gallery/image4.jpg" alt="">
+<img src="gallery/image5.jpg" alt="">
+<img src="gallery/image6.jpg" alt="">
+<img src="gallery/image7.jpg" alt="">
+<img src="gallery/image8.jpg" alt="">
+<img src="gallery/image9.jpg" alt="">
+<img src="gallery/image10.jpg" alt="">
+<img src="gallery/image11.jpg" alt="">
+<img src="gallery/image12.jpg" alt="">
+<img src="gallery/image13.jpg" alt="">
+<img src="gallery/image14.jpg" alt="">
+<img src="gallery/image15.jpg" alt="">
+<img src="gallery/image16.jpg" alt="">
+<img src="gallery/image17.jpg" alt="">
+<img src="gallery/image18.jpg" alt="">
+<img src="gallery/image19.jpg" alt="">
+<img src="gallery/image20.jpg" alt="">
+<img src="gallery/image21.jpg" alt="">
+<img src="gallery/image22.jpg" alt="">
+
+</div>
+
+<footer>
+
+Available in Kraków & Warsaw<br><br>
+
+📧 vadymdominik@gmail.com
+
+</footer>
+
+</body>
+</html>
