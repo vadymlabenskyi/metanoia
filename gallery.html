@@ -4,69 +4,78 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>METANOIA — Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#080808">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080808;--fg:#f2efe9;--muted:#9b978f;--line:#252525}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:300 15px "DM Sans",sans-serif}
+:root{--bg:#080808;--fg:#f3f0ea;--muted:#9a9690;--line:#262626}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font:300 15px/1.5 "DM Sans",sans-serif}
 a{text-decoration:none;color:inherit}
-nav{position:sticky;top:0;background:rgba(8,8,8,.9);backdrop-filter:blur(10px);display:flex;justify-content:space-between;padding:22px 5vw;border-bottom:1px solid var(--line);z-index:10}
-.brand{letter-spacing:.3em;font-size:14px}
-.links{display:flex;gap:28px;font-size:11px;text-transform:uppercase;letter-spacing:.18em}
-header{text-align:center;padding:90px 5vw 60px}
-h1{font:300 clamp(52px,10vw,110px) "DM Sans";margin:0;letter-spacing:-.05em}
-p{color:var(--muted);max-width:700px;margin:18px auto 0;line-height:1.6}
-.filters{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:40px 0}
-button{background:none;border:1px solid #333;color:#ddd;padding:10px 18px;border-radius:999px;cursor:pointer}
-button.active,button:hover{background:#eee;color:#111}
-.grid{column-count:3;column-gap:18px;padding:0 5vw 80px}
-.item{break-inside:avoid;margin-bottom:18px;position:relative;cursor:pointer}
-.item img{width:100%;display:block;border-radius:2px;transition:.4s}
-.item:hover img{transform:scale(1.02);filter:brightness(.82)}
-.cap{position:absolute;left:18px;bottom:18px;opacity:0;transition:.3s;color:#fff;text-shadow:0 2px 8px #000}
-.item:hover .cap{opacity:1}
-.light{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);align-items:center;justify-content:center;z-index:50}
-.light.open{display:flex}
-.light img{max-width:92vw;max-height:90vh}
-.close{position:absolute;top:24px;right:28px;font-size:38px;background:none;border:0;color:#fff}
-@media(max-width:900px){.grid{column-count:2}}
-@media(max-width:600px){.grid{column-count:1}.links{gap:12px}}
+.nav{position:fixed;top:0;left:0;right:0;padding:22px 4vw;display:flex;justify-content:space-between;mix-blend-mode:difference;color:#fff;z-index:10}
+.brand{letter-spacing:.28em;font-size:14px}.hero{padding:18vh 7vw 8vh;border-bottom:1px solid var(--line)}
+h1{font-weight:300;font-size:clamp(58px,11vw,150px);line-height:.88;letter-spacing:-.05em;margin:0}
+.sub{max-width:650px;color:#cfcac3;font-size:20px}
+.gallery{padding:40px 4vw 80px;column-count:4;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;overflow:hidden;background:#111;cursor:pointer;border-radius:2px;opacity:0;transform:translateY(20px);transition:.6s}
+.card.show{opacity:1;transform:none}
+.card img{width:100%;display:block;transition:transform .8s}
+.card:hover img{transform:scale(1.03)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;z-index:99}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:90vh}
+.btn,.close{position:absolute;background:none;border:0;color:#fff;font-size:42px;cursor:pointer;padding:18px}
+.prev{left:12px}.next{right:12px}.close{top:8px;right:18px}
+.cap{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);letter-spacing:.2em;font-size:11px;text-transform:uppercase;color:#bbb}
+@media(max-width:1100px){.gallery{column-count:3}}
+@media(max-width:700px){.gallery{column-count:2}.hero{padding-top:15vh}}
+@media(max-width:480px){.gallery{column-count:1}}
 </style>
 </head>
 <body>
-<nav><a class="brand" href="index.html">METANOIA</a><div class="links"><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="index.html#about">About</a></div></nav>
-<header>
+<nav class="nav"><a class="brand" href="index.html">METANOIA</a><a href="index.html">Home</a></nav>
+<section class="hero">
 <h1>Gallery</h1>
-<p>The complete Metanoia archive. Night. People. Places. Details.</p>
-<div class="filters">
-<button class="active" data-f="all">All</button>
-<button data-f="night">Night</button>
-<button data-f="people">People</button>
-<button data-f="places">Places</button>
-<button data-f="details">Details</button>
+<p class="sub">A continuous archive of light, people, places and fleeting moments.</p>
+</section>
+<main class="gallery" id="gallery"></main>
+<div class="lb" id="lb">
+<button class="close">×</button>
+<button class="btn prev">‹</button>
+<img id="img" alt="">
+<button class="btn next">›</button>
+<div class="cap" id="cap"></div>
 </div>
-</header>
-<div id="grid" class="grid"></div>
-<div class="light" id="lb"><button class="close">×</button><img id="big"></div>
 <script>
-const photos=[
-["01-train-platform","night"],["02-drag-spotlight","people"],["03-drag-yellow","people"],["04-drag-blue","people"],["05-dj-neon","night"],["06-disco-ball","night"],["07-yellow-beam","night"],["08-night-drink","night"],["09-night-street","places"],["10-city-street","places"],["11-boat","places"],["12-statue","places"],["13-parking","places"],["14-skyline","places"],["15-bubbles","details"],["16-leaves","details"],["17-floating-leaf","details"],["18-red-drink","details"],["19-food","details"],["20-yellow-beam-2","night"]
-];
-const g=document.getElementById('grid');
-function render(f='all'){
-g.innerHTML='';
-photos.forEach(p=>{
-if(f!='all'&&p[1]!=f)return;
-let d=document.createElement('div');
-d.className='item';
-d.innerHTML=`<img src="gallery/${p[0]}.webp"><div class="cap">${p[1]}</div>`;
-d.onclick=()=>{lb.classList.add('open');big.src=`gallery/${p[0]}.webp`;};
-g.appendChild(d);
-});
+const exts=["jpg","jpeg"];
+const photos=[];
+for(let i=1;i<=22;i++){
+ let ext=(i===2||i===5||i===8||i===11||i===14||i===17||i===20)?"jpeg":"jpg";
+ photos.push(`/gallery/image${i}.${ext}`);
 }
-render();
-document.querySelectorAll('button[data-f]').forEach(b=>b.onclick=()=>{document.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.f);});
-close.onclick=()=>lb.classList.remove('open');
-lb.onclick=e=>{if(e.target==lb)lb.classList.remove('open');}
+const g=document.getElementById("gallery");
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.08});
+photos.forEach((src,i)=>{
+ const a=document.createElement("figure");
+ a.className="card";
+ a.innerHTML=`<img loading="lazy" decoding="async" src="${src}" alt="Metanoia ${i+1}">`;
+ a.onclick=()=>openLB(i);
+ g.appendChild(a);
+ io.observe(a);
+});
+const lb=document.getElementById("lb"),im=document.getElementById("img"),cap=document.getElementById("cap");
+let idx=0;
+function openLB(i){idx=i;im.src=photos[idx];cap.textContent=`${idx+1} / ${photos.length}`;lb.classList.add("open");}
+function move(d){idx=(idx+d+photos.length)%photos.length;openLB(idx);}
+document.querySelector(".close").onclick=()=>lb.classList.remove("open");
+document.querySelector(".prev").onclick=()=>move(-1);
+document.querySelector(".next").onclick=()=>move(1);
+lb.onclick=e=>{if(e.target===lb)lb.classList.remove("open")}
+addEventListener("keydown",e=>{
+ if(!lb.classList.contains("open"))return;
+ if(e.key==="Escape")lb.classList.remove("open");
+ if(e.key==="ArrowRight")move(1);
+ if(e.key==="ArrowLeft")move(-1);
+});
 </script>
-</body>
-</html>
+</body></html>
