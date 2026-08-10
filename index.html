@@ -2,312 +2,72 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080808">
-<meta name="description" content="Metanoia — photography by Dominik. Portraits, nightlife, events, festivals and creative projects in Kraków and Warsaw.">
-<title>METANOIA — Photography by Dominik</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<meta name="description" content="Metanoia — a visual diary of night, people, places and moments by Dominik.">
+<title>METANOIA — Photography</title>
 <style>
-:root{--bg:#080808;--fg:#f3f0ea;--muted:#9a9690;--soft:#d2cec7;--line:#292929;--accent:#d8c5a3}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:"DM Sans",Arial,sans-serif;font-weight:300;letter-spacing:.01em}
-body.lock{overflow:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit}
-img{max-width:100%}
-::selection{background:var(--fg);color:var(--bg)}
-
-.nav{position:fixed;z-index:50;top:0;left:0;right:0;padding:22px 4vw;display:flex;align-items:center;justify-content:space-between;color:#fff;mix-blend-mode:difference;transition:padding .4s,background .4s}
-.nav.scrolled{padding-top:15px;padding-bottom:15px}
-.brand{font-size:14px;letter-spacing:.28em;font-weight:500}
-.navlinks{display:flex;gap:27px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.18em}
-.navlinks a{opacity:.72;transition:opacity .25s}
-.navlinks a:hover{opacity:1}
-.nav-contact{border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:3px}
-
-.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
-.hero-media{position:absolute;inset:0}
-.hero-media img{width:100%;height:100%;object-fit:cover;filter:brightness(.54);transform:scale(1.04);animation:heroIn 1.8s cubic-bezier(.2,.7,.2,1) forwards}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.04) 43%,rgba(0,0,0,.9))}
-.hero-copy{position:relative;z-index:2;width:100%;padding:0 6vw 7vh;display:flex;justify-content:space-between;align-items:flex-end;gap:50px}
-.eyebrow,.kicker{font-size:10px;text-transform:uppercase;letter-spacing:.25em;color:#c8c3bc}
-.hero h1{font-size:clamp(70px,15vw,190px);line-height:.78;letter-spacing:-.055em;font-weight:400;margin:0 0 28px;animation:rise .9s .2s both}
-.hero-sub{font-size:clamp(17px,2vw,24px);line-height:1.4;max-width:650px;color:#d8d4ce;animation:rise .9s .35s both}
-.serif{font-family:"Playfair Display",serif;font-style:italic}
-.hero-contact{width:min(340px,100%);border-top:1px solid rgba(255,255,255,.42);padding-top:17px;animation:rise .9s .5s both}
-.availability{font-size:10px;text-transform:uppercase;letter-spacing:.2em;margin-bottom:18px}
-.contact-row{display:flex;justify-content:space-between;gap:20px;border-top:1px solid rgba(255,255,255,.15);padding:11px 0;font-size:11px}
-.contact-row span:first-child{color:#aaa}
-.contact-row a:hover{color:var(--accent)}
-
-.section{padding:125px 6vw}
-.section-top{border-top:1px solid var(--line)}
-.intro{display:grid;grid-template-columns:1fr 1.2fr;gap:8vw}
-h2{font-size:clamp(43px,6vw,82px);line-height:.94;font-weight:300;letter-spacing:-.045em;margin:0}
-.intro-copy{font-size:clamp(20px,2.4vw,31px);line-height:1.35;color:#d8d5cf;max-width:850px}
-.intro-copy p{margin:0 0 25px}
-.muted{color:var(--muted)}
-
-.work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px}
-.work-title{margin-top:12px}
-.filters{display:flex;gap:18px;flex-wrap:wrap}
-.filter{border:0;background:none;padding:0;text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:var(--muted);cursor:pointer}
-.filter.active,.filter:hover{color:var(--fg)}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
-.item{position:relative;overflow:hidden;background:#111;cursor:pointer;min-height:200px}
-.item:nth-child(6n+1){grid-column:span 7}
-.item:nth-child(6n+2){grid-column:span 5}
-.item:nth-child(6n+3){grid-column:span 5}
-.item:nth-child(6n+4){grid-column:span 7}
-.item:nth-child(6n+5){grid-column:span 8}
-.item:nth-child(6n+6){grid-column:span 4}
-.item img{width:100%;height:100%;min-height:420px;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .6s}
-.item:hover img{transform:scale(1.025);filter:brightness(.72)}
-.item-info{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:end;opacity:0;transform:translateY(8px);transition:.35s;background:linear-gradient(transparent,rgba(0,0,0,.6));padding-top:60px}
-.item:hover .item-info{opacity:1;transform:none}
-.item-info span{font-size:10px;letter-spacing:.14em;text-transform:uppercase}
-.item-info em{font-family:"Playfair Display",serif;font-size:14px}
-.view-gallery{display:flex;justify-content:center;margin-top:42px}
-.view-gallery a,.contact-link{display:inline-flex;align-items:center;gap:12px;border-bottom:1px solid #777;padding-bottom:8px;text-transform:uppercase;letter-spacing:.2em;font-size:10px;transition:border-color .25s,color .25s}
-.view-gallery a:hover,.contact-link:hover{color:var(--accent);border-color:var(--accent)}
-
-.services{display:grid;grid-template-columns:.75fr 1.25fr;gap:10vw}
-.service-list{border-top:1px solid var(--line)}
-.service{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);font-size:clamp(18px,2vw,26px)}
-.service-num{font-size:10px;letter-spacing:.15em;color:var(--muted);padding-top:5px}
-.service small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:7px;max-width:560px}
-
-.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:10vw}
-.about-copy{font-size:19px;line-height:1.65;color:#c4c0b9;max-width:720px}
-.about-copy p:first-child{font-size:29px;color:var(--fg);line-height:1.35}
-.about-meta{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:45px;padding-top:25px;border-top:1px solid var(--line)}
-.about-meta div{display:flex;flex-direction:column;gap:7px}
-.about-meta strong{font-size:10px;text-transform:uppercase;letter-spacing:.18em;font-weight:400;color:var(--muted)}
-.about-meta span{font-size:15px}
-
-.contact-section{min-height:80vh;display:grid;align-items:center}
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end}
-.contact-title{font-size:clamp(60px,10vw,145px);line-height:.82;letter-spacing:-.06em;font-weight:300;margin:0}
-.contact-intro{font-size:20px;color:#c4c0b9;line-height:1.5;max-width:540px;margin:25px 0 38px}
-.contact-list{border-top:1px solid var(--line)}
-.big-contact{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);font-size:clamp(17px,2vw,24px)}
-.big-contact .label{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted)}
-.big-contact a{transition:color .25s}
-.big-contact a:hover{color:var(--accent)}
-
-.footer{padding:35px 6vw 55px;border-top:1px solid var(--line)}
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:30px}
-.footer-brand{font-size:22px;letter-spacing:.2em}
-.footer-columns{display:grid;grid-template-columns:repeat(2,180px);gap:35px}
-.footer-col{display:flex;flex-direction:column;gap:10px}
-.footer-col strong{font-size:9px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);font-weight:400}
-.footer-col a{font-size:12px}
-.footer-bottom{display:flex;justify-content:space-between;margin-top:70px;color:#666;font-size:9px;text-transform:uppercase;letter-spacing:.15em}
-
-.floating-contact{position:fixed;z-index:40;right:24px;bottom:24px}
-.float-main{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(8,8,8,.72);backdrop-filter:blur(12px);color:#fff;cursor:pointer;display:grid;place-items:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:transform .3s,background .3s}
-.float-main:hover{transform:scale(1.06);background:#f3f0ea;color:#080808}
-.float-menu{position:absolute;right:0;bottom:70px;width:190px;background:rgba(14,14,14,.95);border:1px solid var(--line);backdrop-filter:blur(15px);opacity:0;pointer-events:none;transform:translateY(10px);transition:.3s}
-.floating-contact.open .float-menu{opacity:1;pointer-events:auto;transform:none}
-.float-menu a{display:flex;justify-content:space-between;padding:14px 15px;border-bottom:1px solid var(--line);font-size:10px;text-transform:uppercase;letter-spacing:.15em}
-.float-menu a:last-child{border-bottom:0}
-.float-menu a:hover{color:var(--accent)}
-
-.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s,transform .8s}
-.reveal.visible{opacity:1;transform:none}
-.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,3,3,.97);display:none;align-items:center;justify-content:center;padding:4vw}
-.lightbox.open{display:flex}
-.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain}
-.close{position:absolute;top:18px;right:25px;background:none;border:0;font-size:30px;cursor:pointer;font-weight:200}
-
-@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
-@keyframes heroIn{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:scale(1.04)}}
-
-@media(max-width:850px){
-.nav{padding:18px 7vw}.navlinks{gap:14px}.navlinks a:nth-child(2){display:none}
-.hero-copy{padding:0 7vw 7vh;display:block}.hero-contact{margin-top:38px}
-.section{padding:90px 7vw}.intro,.services,.about,.contact-layout{grid-template-columns:1fr;gap:35px}
-.work-head{display:block}.filters{margin-top:25px}
-.grid{display:block}.item{margin-bottom:12px}.item img{min-height:0;height:auto;aspect-ratio:4/5}.item-info{opacity:1;transform:none}
-.about-meta{grid-template-columns:1fr 1fr}
-.footer-top{display:block}.footer-columns{margin-top:45px}.footer-bottom{display:block}.footer-bottom span{display:block;margin-top:10px}
-}
-@media(max-width:520px){
-.navlinks a:nth-child(3),.nav-contact{display:none}
-.hero h1{font-size:21vw}.hero-sub{font-size:18px}
-.about-meta{grid-template-columns:1fr}
-.big-contact{display:block}.big-contact .label{display:block;margin-bottom:7px}
-.footer-columns{grid-template-columns:1fr 1fr}
-.floating-contact{right:16px;bottom:16px}
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+:root{--bg:#080808;--fg:#f3f0ea;--muted:#9a9690;--line:#262626;--accent:#d8c5a3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:'DM Sans',Arial,sans-serif;font-weight:300;letter-spacing:.01em}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+.nav{position:fixed;z-index:20;top:0;left:0;right:0;padding:22px 4vw;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;color:#fff}.brand{font-size:14px;letter-spacing:.28em;font-weight:500}.navlinks{display:flex;gap:28px;font-size:11px;text-transform:uppercase;letter-spacing:.18em}.navlinks a{opacity:.78}.navlinks a:hover{opacity:1}
+.hero{min-height:100svh;position:relative;display:grid;align-items:end;overflow:hidden}.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.58)}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.05) 45%,rgba(0,0,0,.88))}.hero-copy{position:relative;z-index:2;padding:0 6vw 8vh;max-width:1050px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.25em;color:#d0ccc5;margin-bottom:22px}h1{font-size:clamp(70px,15vw,190px);line-height:.78;margin:0 0 30px;letter-spacing:-.055em;font-weight:400}.hero-sub{font-size:clamp(17px,2vw,24px);max-width:620px;line-height:1.45;color:#d2d0cc}.hero-sub em{font-family:'Playfair Display',serif;font-size:1.08em}
+.section{padding:130px 6vw}.intro{display:grid;grid-template-columns:1fr 1.2fr;gap:8vw;align-items:start;border-top:1px solid var(--line)}.kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}.intro h2,.about h2{font-size:clamp(42px,6vw,82px);line-height:.95;font-weight:300;letter-spacing:-.04em;margin:0}.intro p{font-size:clamp(20px,2.4vw,31px);line-height:1.35;margin:0;max-width:850px;color:#d8d5cf}.serif{font-family:'Playfair Display',serif;font-style:italic}
+.work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:42px}.filters{display:flex;gap:18px;flex-wrap:wrap}.filter{border:0;background:none;padding:0;text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:var(--muted);cursor:pointer}.filter.active,.filter:hover{color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.item{position:relative;overflow:hidden;background:#111;cursor:pointer;min-height:200px}.item:nth-child(6n+1){grid-column:span 7}.item:nth-child(6n+2){grid-column:span 5}.item:nth-child(6n+3){grid-column:span 5}.item:nth-child(6n+4){grid-column:span 7}.item:nth-child(6n+5){grid-column:span 8}.item:nth-child(6n+6){grid-column:span 4}.item img{width:100%;height:100%;min-height:420px;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s}.item:hover img{transform:scale(1.025);filter:brightness(.72)}.item-info{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:end;opacity:0;transform:translateY(8px);transition:.35s;background:linear-gradient(transparent,rgba(0,0,0,.55));padding-top:60px}.item:hover .item-info{opacity:1;transform:none}.item-info span{font-size:10px;letter-spacing:.14em;text-transform:uppercase}.item-info em{font-family:'Playfair Display',serif;font-size:14px}
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:10vw;border-top:1px solid var(--line)}.about-copy{font-size:20px;line-height:1.6;color:#c4c0b9;max-width:720px}.about-copy p:first-child{font-size:30px;color:var(--fg);line-height:1.35}.contact{margin-top:55px;display:inline-flex;gap:12px;align-items:center;border-bottom:1px solid #777;padding-bottom:7px;font-size:11px;text-transform:uppercase;letter-spacing:.2em}
+.footer{padding:35px 6vw 55px;display:flex;justify-content:space-between;color:#777;font-size:10px;text-transform:uppercase;letter-spacing:.15em;border-top:1px solid var(--line)}
+.lightbox{position:fixed;inset:0;z-index:50;background:rgba(3,3,3,.96);display:none;align-items:center;justify-content:center;padding:4vw}.lightbox.open{display:flex}.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain}.close{position:absolute;top:22px;right:28px;background:none;border:0;font-size:30px;cursor:pointer;font-weight:200}.lb-caption{position:absolute;left:30px;bottom:25px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#aaa}
+@media(max-width:800px){.navlinks{gap:12px}.navlinks a:nth-child(2){display:none}.hero-copy{padding-left:7vw;padding-bottom:7vh}.section{padding:90px 7vw}.intro,.about{grid-template-columns:1fr;gap:30px}.grid{display:block}.item{margin-bottom:12px}.item img{min-height:0;height:auto;aspect-ratio:4/5}.item-info{opacity:1;transform:none}.work-head{display:block}.filters{margin-top:25px}.footer{padding-left:7vw;padding-right:7vw;display:block}.footer span+span{display:block;margin-top:12px}}
 </style>
 </head>
 <body>
+<nav class="nav"><a class="brand" href="#top">METANOIA</a><div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="gallery.html">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="mailto:vadymdominik@gmail.com">Hire Me</a>
+    <a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">Instagram</a>
+</div></nav>
+<header class="hero" id="top"><img src="images/01-train-platform.webp" alt="Warsaw · Platform 3" fetchpriority="high"><div class="hero-copy"><div class="eyebrow">Photography · Kraków / Poland</div><h1>METANOIA</h1><div class="hero-sub">A visual diary of <em>night, people, places</em> and the moments that make ordinary life feel a little less ordinary.</div>
+<div style="position:absolute;right:6vw;bottom:8vh;z-index:3;width:min(340px,90vw);border-top:1px solid rgba(255,255,255,.35);padding-top:16px;color:#f3f0ea">
+<div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px">Available in Kraków &amp; Warsaw</div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="color:#aaa">Instagram</span><a href="https://www.instagram.com/life.in.metanoia/" target="_blank">@life.in.metanoia ↗</a></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="color:#aaa">Email</span><a href="mailto:vadymdominik@gmail.com">vadymdominik@gmail.com</a></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(255,255,255,.15)"><span style="color:#aaa">SMS</span><a href="sms:+48537178965">+48 537 178 965</a></div>
+</div></header>
+<section class="section intro"><div><div class="kicker">01 — The idea</div><h2>Look again.<br><span class="serif">Feel more.</span></h2></div><p>Metanoia is about the moments you might normally walk past: a platform waiting for the last train, light cutting through a club, a stranger caught mid-laugh, colour appearing where you least expect it.</p></section>
+<section class="section" id="work"><div class="work-head"><div><div class="kicker">02 — Selected work</div><h2 style="font-size:clamp(38px,5vw,68px);font-weight:300;letter-spacing:-.04em;margin:12px 0 0">Fragments of life.</h2></div><div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="night">Night</button><button class="filter" data-filter="people">People</button><button class="filter" data-filter="places">Places</button><button class="filter" data-filter="details">Details</button></div></div><div class="grid" id="grid"></div></section>
 
-<nav class="nav" id="nav">
-<a class="brand" href="#top">METANOIA</a>
-<div class="navlinks">
-<a href="#work">Work</a>
-<a href="gallery.html">Gallery</a>
-<a href="#about">About</a>
-<a href="#contact" class="nav-contact">Contact</a>
-<a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">Instagram</a>
-</div>
-</nav>
-
-<header class="hero" id="top">
-<div class="hero-media"><img src="images/01-train-platform.webp" alt="Warsaw — Platform 3" fetchpriority="high"></div>
-<div class="hero-copy">
-<div>
-<div class="eyebrow">Photography · Kraków / Warsaw</div>
-<h1>METANOIA</h1>
-<div class="hero-sub">A visual diary of <em class="serif">night, people, places</em> and the moments that make ordinary life feel a little less ordinary.</div>
-</div>
-<div class="hero-contact">
-<div class="availability">Available in Kraków & Warsaw</div>
-<div class="contact-row"><span>Instagram</span><a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">@life.in.metanoia ↗</a></div>
-<div class="contact-row"><span>Email</span><a href="mailto:vadymdominik@gmail.com">vadymdominik@gmail.com</a></div>
-<div class="contact-row"><span>SMS only</span><a href="sms:+48537178965">+48 537 178 965</a></div>
-</div>
-</div>
-</header>
-
-<section class="section section-top intro reveal">
-<div><div class="kicker">01 — The idea</div><h2>Look again.<br><span class="serif">Feel more.</span></h2></div>
-<div class="intro-copy">
-<p>Metanoia is about the moments you might normally walk past: a platform waiting for the last train, light cutting through a club, a stranger caught mid-laugh, colour appearing where you least expect it.</p>
-<p class="muted">Photography by Dominik — built around curiosity, atmosphere and the instinct to stop, look closer, and keep the frame.</p>
-</div>
-</section>
-
-<section class="section reveal" id="work">
-<div class="work-head">
-<div><div class="kicker">02 — Selected work</div><h2 class="work-title">Fragments of life.</h2></div>
-<div class="filters">
-<button class="filter active" data-filter="all">All</button>
-<button class="filter" data-filter="night">Night</button>
-<button class="filter" data-filter="people">People</button>
-<button class="filter" data-filter="places">Places</button>
-<button class="filter" data-filter="details">Details</button>
-</div>
-</div>
-<div class="grid" id="grid"></div>
-<div class="view-gallery"><a href="gallery.html">Enter the full gallery ↗</a></div>
-</section>
-
-<section class="section section-top services reveal" id="services">
-<div><div class="kicker">03 — Services</div><h2>Made for<br><span class="serif">real moments.</span></h2></div>
-<div class="service-list">
-<div class="service"><span class="service-num">01</span><div>Portrait Photography<small>Natural, expressive portraits with an editorial eye — individual, couple and creative sessions.</small></div></div>
-<div class="service"><span class="service-num">02</span><div>Nightlife Photography<small>Clubs, parties and nightlife captured with energy, colour and atmosphere.</small></div></div>
-<div class="service"><span class="service-num">03</span><div>Events<small>Authentic coverage of private and public events, from intimate gatherings to large nights.</small></div></div>
-<div class="service"><span class="service-num">04</span><div>Festivals<small>Fast, colourful and immersive visual coverage that keeps the feeling of the day alive.</small></div></div>
-<div class="service"><span class="service-num">05</span><div>Commercial Photography<small>Visual content for brands, venues, artists and projects that need a distinct point of view.</small></div></div>
-<div class="service"><span class="service-num">06</span><div>Creative Projects<small>Collaborations, concepts and visual stories built around an idea rather than a brief.</small></div></div>
-</div>
-</section>
-
-<section class="section section-top about reveal" id="about">
-<div><div class="kicker">04 — About</div><h2>Not everything<br>needs a <span class="serif">reason.</span></h2></div>
-<div class="about-copy">
-<p>Metanoia is a personal photography project built around curiosity — the instinct to stop, look closer, and keep the frame.</p>
-<p>Some images are quiet. Some are loud. Some are deliberately imperfect. Together they form a visual diary of cities, nightlife, people, colour, and the small details that stay with you long after the moment is gone.</p>
-<div class="about-meta">
-<div><strong>Photographer</strong><span>Dominik</span></div>
-<div><strong>Based in</strong><span>Kraków · Warsaw</span></div>
-<div><strong>Available for</strong><span>Bookings & collaborations</span></div>
-<div><strong>Instagram</strong><span>@life.in.metanoia</span></div>
-</div>
-</div>
-</section>
-
-<section class="section section-top contact-section reveal" id="contact">
-<div class="contact-layout">
-<div>
-<div class="kicker">05 — Contact</div>
-<h2 class="contact-title">Let's create<br><span class="serif">something.</span></h2>
-</div>
-<div>
-<p class="contact-intro">Have a shoot, event, idea or collaboration in mind? Tell me what you're working on. I'm available in Kraków and Warsaw.</p>
-<div class="contact-list">
-<div class="big-contact"><span class="label">Instagram</span><a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">@life.in.metanoia ↗</a></div>
-<div class="big-contact"><span class="label">Email</span><a href="mailto:vadymdominik@gmail.com">vadymdominik@gmail.com</a></div>
-<div class="big-contact"><span class="label">SMS only</span><a href="sms:+48537178965">+48 537 178 965</a></div>
-</div>
-</div>
-</div>
-</section>
-
-<footer class="footer">
-<div class="footer-top">
-<div><div class="footer-brand">METANOIA</div><p class="muted">Photography by Dominik</p></div>
-<div class="footer-columns">
-<div class="footer-col"><strong>Explore</strong><a href="#work">Work</a><a href="gallery.html">Gallery</a><a href="#about">About</a></div>
-<div class="footer-col"><strong>Contact</strong><a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">Instagram</a><a href="mailto:vadymdominik@gmail.com">Email</a><a href="sms:+48537178965">SMS</a></div>
-</div>
-</div>
-<div class="footer-bottom"><span>© 2026 Metanoia Photography</span><span>Available in Kraków & Warsaw</span><span>metanoiaphoto.com</span></div>
-</footer>
-
-<div class="floating-contact" id="floating">
-<div class="float-menu">
-<a href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener"><span>Instagram</span><span>↗</span></a>
-<a href="mailto:vadymdominik@gmail.com"><span>Email</span><span>↗</span></a>
-<a href="sms:+48537178965"><span>SMS</span><span>↗</span></a>
-</div>
-<button class="float-main" aria-label="Open contact menu">Contact</button>
-</div>
-
+<section class="section" id="services"><div class="intro" style="border-top:1px solid var(--line)">
+<div><div class="kicker">03 — Services</div><h2>Available<br><span class="serif">for.</span></h2></div>
+<div style="font-size:24px;line-height:2">
+Portrait Photography<br>
+Nightlife Photography<br>
+Events<br>
+Festivals<br>
+Commercial Photography<br>
+Creative Projects
+</div></div></section>
+<section class="section about" id="about"><div><div class="kicker">03 — About</div><h2>Not everything<br>needs a <span class="serif">reason.</span></h2></div><div class="about-copy"><p>Metanoia is a personal photography project built around curiosity — the instinct to stop, look closer, and keep the frame.</p><p>Some images are quiet. Some are loud. Some are deliberately imperfect. Together they form a visual diary of cities, nightlife, people, colour, and the small details that stay with you long after the moment is gone.</p><a class="contact" href="https://www.instagram.com/life.in.metanoia/" target="_blank" rel="noopener">Instagram ↗</a></div></section>
+<footer class="footer"><span>© 2026 Metanoia Photography</span><span>metanoiaphoto.com</span></footer>
+<div class="lightbox" id="lightbox"><button class="close" aria-label="Close">×</button><img id="lbimg" src="" alt=""><div class="lb-caption" id="lbcap"></div></div>
 <script>
-const photos=[
-{src:"images/01-train-platform.webp",category:"night",caption:"Warsaw · Platform 3",alt:"Warsaw · Platform 3"},
-{src:"images/02-drag-spotlight.webp",category:"people",caption:"After the lights come on",alt:"After the lights come on"},
-{src:"images/03-drag-yellow.webp",category:"people",caption:"Colour, character, movement",alt:"Colour, character, movement"},
-{src:"images/04-drag-blue.webp",category:"people",caption:"A little more colour",alt:"A little more colour"},
-{src:"images/05-dj-neon.webp",category:"night",caption:"Behind the decks",alt:"Behind the decks"},
-{src:"images/06-disco-ball.webp",category:"night",caption:"Midnight geometry",alt:"Midnight geometry"},
-{src:"images/07-yellow-beam.webp",category:"night",caption:"Light finds its way",alt:"Light finds its way"},
-{src:"images/08-night-drink.webp",category:"night",caption:"Electric nights",alt:"Electric nights"},
-{src:"images/09-night-street.webp",category:"places",caption:"After dark",alt:"After dark"},
-{src:"images/10-city-street.webp",category:"places",caption:"The city, still awake",alt:"The city, still awake"},
-{src:"images/11-boat.webp",category:"places",caption:"Somewhere between places",alt:"Somewhere between places"},
-{src:"images/12-statue.webp",category:"places",caption:"Blue hour",alt:"Blue hour"},
-{src:"images/13-parking.webp",category:"places",caption:"Quiet streets",alt:"Quiet streets"},
-{src:"images/14-skyline.webp",category:"places",caption:"Weather over the city",alt:"Weather over the city"},
-{src:"images/15-bubbles.webp",category:"details",caption:"Small things",alt:"Small things"},
-{src:"images/16-leaves.webp",category:"details",caption:"Autumn on the ground",alt:"Autumn on the ground"},
-{src:"images/17-floating-leaf.webp",category:"details",caption:"Held in the light",alt:"Held in the light"},
-{src:"images/18-red-drink.webp",category:"details",caption:"Colour study",alt:"Colour study"},
-{src:"images/19-food.webp",category:"details",caption:"A moment at the table",alt:"A moment at the table"},
-{src:"images/20-yellow-beam-2.webp",category:"night",caption:"A room in one colour",alt:"A room in one colour"}
-];
-
-const grid=document.getElementById("grid"),filters=document.querySelectorAll(".filter");
-function render(filter="all"){
- grid.innerHTML="";
- photos.forEach(p=>{
-  if(filter!=="all"&&p.category!==filter)return;
-  const a=document.createElement("article");
-  a.className="item";
-  a.innerHTML=`<img src="${p.src}" alt="${p.alt}" loading="lazy"><div class="item-info"><span>${p.category}</span><em>${p.caption}</em></div>`;
-  grid.appendChild(a);
- });
-}
-filters.forEach(b=>b.addEventListener("click",()=>{filters.forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.filter)}));
-render();
-
-const nav=document.getElementById("nav");
-addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>40),{passive:true});
-
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible")}),{threshold:.12});
-document.querySelectorAll(".reveal").forEach(e=>observer.observe(e));
-
-const floating=document.getElementById("floating");
-floating.querySelector(".float-main").addEventListener("click",()=>floating.classList.toggle("open"));
-document.addEventListener("click",e=>{if(!floating.contains(e.target))floating.classList.remove("open")});
+const photos=[{"src": "images/01-train-platform.webp", "category": "night", "caption": "Warsaw \u00b7 Platform 3", "alt": "Warsaw \u00b7 Platform 3", "w": 1024, "h": 1536}, {"src": "images/02-drag-spotlight.webp", "category": "people", "caption": "After the lights come on", "alt": "After the lights come on", "w": 2048, "h": 1365}, {"src": "images/03-drag-yellow.webp", "category": "people", "caption": "Colour, character, movement", "alt": "Colour, character, movement", "w": 1365, "h": 2048}, {"src": "images/04-drag-blue.webp", "category": "people", "caption": "A little more colour", "alt": "A little more colour", "w": 2048, "h": 1365}, {"src": "images/05-dj-neon.webp", "category": "night", "caption": "Behind the decks", "alt": "Behind the decks", "w": 1365, "h": 2048}, {"src": "images/06-disco-ball.webp", "category": "night", "caption": "Midnight geometry", "alt": "Midnight geometry", "w": 2048, "h": 1365}, {"src": "images/07-yellow-beam.webp", "category": "night", "caption": "Light finds its way", "alt": "Light finds its way", "w": 1024, "h": 1536}, {"src": "images/08-night-drink.webp", "category": "night", "caption": "Electric nights", "alt": "Electric nights", "w": 1024, "h": 1536}, {"src": "images/09-night-street.webp", "category": "places", "caption": "After dark", "alt": "After dark", "w": 1024, "h": 1536}, {"src": "images/10-city-street.webp", "category": "places", "caption": "The city, still awake", "alt": "The city, still awake", "w": 1024, "h": 1536}, {"src": "images/11-boat.webp", "category": "places", "caption": "Somewhere between places", "alt": "Somewhere between places", "w": 1536, "h": 1024}, {"src": "images/12-statue.webp", "category": "places", "caption": "Blue hour", "alt": "Blue hour", "w": 1440, "h": 1536}, {"src": "images/13-parking.webp", "category": "places", "caption": "Quiet streets", "alt": "Quiet streets", "w": 2048, "h": 1365}, {"src": "images/14-skyline.webp", "category": "places", "caption": "Weather over the city", "alt": "Weather over the city", "w": 2048, "h": 1365}, {"src": "images/15-bubbles.webp", "category": "details", "caption": "Small things", "alt": "Small things", "w": 1536, "h": 1024}, {"src": "images/16-leaves.webp", "category": "details", "caption": "Autumn on the ground", "alt": "Autumn on the ground", "w": 1024, "h": 1536}, {"src": "images/17-floating-leaf.webp", "category": "details", "caption": "Held in the light", "alt": "Held in the light", "w": 1536, "h": 956}, {"src": "images/18-red-drink.webp", "category": "details", "caption": "Colour study", "alt": "Colour study", "w": 2048, "h": 1365}, {"src": "images/19-food.webp", "category": "details", "caption": "A moment at the table", "alt": "A moment at the table", "w": 2048, "h": 1365}, {"src": "images/20-yellow-beam-2.webp", "category": "night", "caption": "A room in one colour", "alt": "A room in one colour", "w": 1365, "h": 2048}];
+const grid=document.getElementById('grid');
+const filters=document.querySelectorAll('.filter');
+const lb=document.getElementById('lightbox'); const lbimg=document.getElementById('lbimg'); const lbcap=document.getElementById('lbcap');
+function render(filter='all'){grid.innerHTML='';photos.forEach((p,i)=>{if(filter!=='all'&&p.category!==filter)return;const a=document.createElement('article');a.className='item';a.innerHTML=`<img src="${p.src}" alt="${p.alt}" loading="lazy"><div class="item-info"><span>${p.category}</span><em>${p.caption}</em></div>`;a.onclick=()=>{lb.classList.add('open');lbimg.src=p.src;lbimg.alt=p.alt;lbcap.textContent=p.caption};grid.appendChild(a)})}
+filters.forEach(b=>b.onclick=()=>{filters.forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.filter);});render();
+document.querySelector('.close').onclick=()=>lb.classList.remove('open');lb.onclick=e=>{if(e.target===lb)lb.classList.remove('open')};document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
 </script>
-</body>
-</html>
+
+<div id="fc" style="position:fixed;right:24px;bottom:24px;z-index:99">
+<button onclick="document.getElementById('menu').classList.toggle('o')" style="border:1px solid #555;background:#111;color:#fff;padding:16px 18px;border-radius:999px;cursor:pointer">Contact</button>
+<div id="menu" style="display:none;position:absolute;right:0;bottom:60px;background:#111;border:1px solid #333;min-width:220px">
+<a style="display:block;padding:12px" href="https://www.instagram.com/life.in.metanoia/" target="_blank">Instagram</a>
+<a style="display:block;padding:12px" href="mailto:vadymdominik@gmail.com">Email</a>
+<a style="display:block;padding:12px" href="sms:+48537178965">SMS</a>
+</div></div>
+<script>const m=document.getElementById('menu');Object.defineProperty(m.classList,'toggle',{value:function(){m.style.display=m.style.display==='block'?'none':'block';}});</script>
+</body></html>
